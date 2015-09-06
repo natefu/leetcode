@@ -1,1 +1,49 @@
+package leetcode15;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class code15 {
+	static void quicksort(int n[], int left, int right) {
+		int dp;
+		if (left < right) {
+			dp = partition(n, left, right);
+			quicksort(n, left, dp - 1);
+			quicksort(n, dp + 1, right);
+		}
+	}
+	static int partition(int n[], int left, int right) {
+		int pivot = n[left];
+		while (left < right) {
+			while (left < right && n[right] >= pivot)
+				right--;
+			if (left < right)
+				n[left++] = n[right];
+			while (left < right && n[left] <= pivot)
+				left++;
+			if (left < right)
+				n[right--] = n[left];
+			}
+		n[left] = pivot;
+		return left;
+		}
+	public List<List<Integer>> threeSum(int[] nums) {
+		List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        int size = nums.length;
+        quicksort(nums,0,size);
+        for(int i=0;i<size;i++){
+        	int j=i+1;
+        	while(nums[i]==nums[j]){
+        		nums[j]=Integer.MIN_VALUE;
+        		j++;
+        	}
+        }
+        int b1=0, b2=size-1;
+        for(int a=0,c = size-1;nums[a]<0&&nums[c]>=0;){
+        	for(;nums[b1]<0||nums[b2]>=0;){
+        	}
+        }
+        return ret;
+    }
+}
 
