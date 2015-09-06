@@ -1,1 +1,34 @@
+package leetcode29;
+
+public class code29 {
+	public int divide(int dividend, int divisor) {
+		int sym = 1;
+		if(dividend<0){
+			sym*=-1;
+		}
+		if(divisor<0){
+			sym*=-1;
+		}
+		long dividendL = Math.abs((long)dividend);
+	    long divisorL = Math.abs((long)divisor);
+	    if(dividendL>Integer.MAX_VALUE) return Integer.MAX_VALUE;
+		if(dividendL<divisorL) return 0;
+		if(divisorL==1) 
+			return (int) (sym*dividendL);
+		int ret=0;
+		while(dividendL>=divisorL){
+			long count=1;
+			long fakedi = divisorL;
+			while(dividendL>=fakedi){
+				fakedi<<=1;
+				count<<=1;
+			}
+			fakedi>>=1;
+			count>>=1;
+			ret+=count;
+			dividendL-=fakedi;
+		}
+		return sym*ret;
+    }
+}
 
