@@ -1,1 +1,37 @@
+package leetcode17;
+/*
+ * Given a digit string, return all possible letter combinations that the number could represent.
+ * A mapping of digit to letters (just like on the telephone buttons) is given below.
+ * Input:Digit string "23"
+ * Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+ * Note:
+ * Although the above answer is in lexicographical order, your answer could be in any order you want.
+ */
+import java.util.ArrayList;
+import java.util.List;
+
+public class code17 {
+	public List<String> letterCombinations(String digits) {
+		List<String> ret = new ArrayList<String>(); 
+        if(digits.equals("")) return ret;
+		String [][]digi = {{" "},{" "},{"a","b","c"},{"d","e","f"},{"g","h","i"},{"j","k","l"},
+        		{"m","n","o"},{"p","q","r","s"},{"t","u","v"},{"w","x","y","z"}};
+        int size = digits.length();
+        String seq = "";
+        returnString(0, digits, ret, digi, seq);
+        return ret;
+    }
+	public void returnString(int count, String s, List<String> ret, String [][]digi, String seq){ 
+        if(count==s.length()){
+        	ret.add(seq);
+        	return;
+        }else{
+        	int tmp = s.charAt(count)-48;
+        	for(int i=0;i<digi[tmp].length;i++){
+        		String tmpseq = seq+digi[tmp][i];
+        		returnString(count+1,s,ret,digi,tmpseq);
+        	}
+        }
+	}
+}
 
