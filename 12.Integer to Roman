@@ -1,1 +1,90 @@
+package leetcode12;
+/*
+ * Given an integer, convert it to a roman numeral.
+ * Input is guaranteed to be within the range from 1 to 3999.
+ */
+
+public class code12 {
+	public String intToRoman(int num) {
+		//fuction1
+		/*
+		String ret = "";
+        int tmp = num;
+        int length = 0;
+        while(tmp!=0){
+        	tmp=tmp/10;
+        	length++;
+        }
+        System.out.println(length);
+        int position[] = new int[length];
+        for(int i=0;i<length;i++){
+        	position[i]=num%10;
+        	num/=10;
+        }
+        for(int i=length-1;i>=0;i--){
+        	if(i==3){
+        		for(int j=0;j<position[i];j++)
+        			ret+='M';
+        	}else if(i==2){
+        		if(position[i]>0&&position[i]<4)
+        			for(int j=0;j<position[i];j++)
+        				ret+="C";
+        		else if(position[i]==4)
+        			ret+="CD";
+        		else if(position[i]>=5&&position[i]<9){
+        			ret+="D";
+        			for(int j=0;j<position[i]-5;j++)
+    				ret+="C";
+        		}else if(position[i]==9)
+        			ret+="CM";
+        	}else if(i==1){
+        		if(position[i]>0&&position[i]<4)
+        			for(int j=0;j<position[i];j++)
+        				ret+="X";
+        		else if(position[i]==4)
+        			ret+="XL";
+        		else if(position[i]>=5&&position[i]<9){
+        			ret+="L";
+        			for(int j=0;j<position[i]-5;j++)
+    				ret+="X";
+        		}else if(position[i]==9)
+        			ret+="XC";
+        	}else if(i==0){
+        		if(position[i]>0&&position[i]<4){
+        			for(int j=0;j<position[i];j++){
+        				ret+="I";
+        			}
+        		}
+        		else if(position[i]==4)
+        			ret+="IV";
+        		else if(position[i]>=5&&position[i]<9){
+        			ret+="V";
+        			for(int j=0;j<position[i]-5;j++)
+    				ret+="I";
+        		}else if(position[i]==9)
+        			ret+="IX";
+        	}
+        }
+        return ret;*/
+		
+		//fuction 2
+		String ret = "";
+		int position = 0;
+		String [][]roman = {
+				{"","I","II","III","IV","V","VI","VII","VIII","IX"},
+				{"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"},
+				{"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"},
+				{"","M","MM","MMM"}
+		};
+		while(num!=0){
+			int digit = num%10;
+			num/=10;
+			ret = roman[position][digit]+ret;
+			position++;
+		}
+		return ret;
+		
+		
+    }
+}
 
