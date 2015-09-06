@@ -1,1 +1,29 @@
+package leetcode9;
+/*
+ * Determine whether an integer is a palindrome. Do this without extra space.
+ */
+public class code9 {
+	int getnumber(int x, int position){
+		return (int) ((int) x/Math.pow(10, position-1)%10);
+	}
+	public boolean isPalindrome(int x) {
+		if(x<0) return false;
+		int length = 0;
+		int tmp = x;
+		while(tmp!=0){
+			tmp/=10;
+			length++;
+		}
+		int i=1;
+		while(i<length){
+			if(getnumber(x,i)==getnumber(x,length)){
+				i++;
+				length--;
+			}
+			else
+				return false;
+		}
+		return true;
+    }
+}
 
