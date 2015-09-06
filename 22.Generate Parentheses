@@ -1,1 +1,27 @@
+package leetcode22;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class code22 {
+	public List<String> generateParenthesis(int n) {
+		List<String> ret = new ArrayList<String>();
+		returnlist(ret,n,"",0,0);
+		return ret;
+    }
+	void returnlist(List<String> ret,int size, String seq, int lsize, int rsize){
+		if(lsize==size){
+			for(int i=0;i<size-rsize;i++){
+				seq+=")";
+			}
+			ret.add(seq);
+			return;
+		}else{
+			returnlist(ret,size,seq+"(",lsize+1,rsize);
+			if(lsize>rsize){
+				returnlist(ret,size,seq+")",lsize,rsize+1);
+			}
+		}
+	}
+}
 
