@@ -51,3 +51,5 @@ public class code30 {
         return ret;  
     }
 }
+//http://blog.csdn.net/a83610312/article/details/11924735
+//I can't understand the aim of the codes from 41. Can anyone explain it for me.
