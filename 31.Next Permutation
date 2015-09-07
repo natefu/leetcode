@@ -1,0 +1,43 @@
+package leetcode31;
+
+public class code31 {
+	public void nextPermutation(int[] nums) {
+        int length = nums.length;
+        for(int i=length-2;i>=0;i--){
+        	if(nums[i+1]>nums[i]){
+        		int j=0;
+        		for(j=length-1;j>i;j--) if(nums[j]>nums[i]) break;
+        		int a=nums[j];
+        		nums[j]=nums[i];
+        		nums[i]=a;
+        		reverse(nums,i+1,length-1);
+        		return;
+        	}
+        }
+        reverse(nums,0,length-1);
+        return;
+    }
+	public void reverse(int[] nums, int l, int r){
+		int dp;
+		if(l<r){
+			dp = partition(nums,l,r);
+			reverse(nums,l,dp-1);
+			reverse(nums,dp+1,r);
+		}
+	}
+	int partition(int[] nums, int l, int r){
+		int p = nums[l];
+		while(l<r){
+			while(l<r&&nums[r]>=p)
+				r--;
+			if(l<r)
+				nums[l++]=nums[r];
+			while(l<r&&nums[l]<=p)
+				l++;
+			if(l<r)
+				nums[r--]=nums[l];
+		}
+		nums[l]=p;
+		return l;
+	}
+}
