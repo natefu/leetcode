@@ -1,0 +1,53 @@
+package leetcode30;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class code30 {
+    public List<Integer> findSubstring(String s, String[] words) {
+    	ArrayList<Integer> ret = new ArrayList<Integer>();
+        Map<String,Integer> map = new HashMap<String,Integer>();
+        for(int i=0;i<words.length;i++){
+        	if(map.containsKey(words[i])){
+        		int k = map.get(words[i]);
+        		map.put(words[i], k+1);
+        	}else{
+        		map.put(words[i], 1);
+        	}
+        }
+        int size = words[0].length();
+        int index = words.length;
+       for(int i=0;i<s.length();i++){
+    	   int start = i;
+    	   int end = i;
+    	   Map<String,Integer> fakemap = new HashMap<String, Integer>(map);
+    	   if(s.length()-start<(size)*(index)) break;
+    	   int k=0;
+    	   for(;k<index;){
+    		   String tmp = s.substring(end, end+size);
+    		   if(fakemap.containsKey(tmp)){
+    			   System.out.println(tmp);
+    			   int a = fakemap.get(tmp);
+    			   if(a>0){ 
+    				   a--;
+    				   fakemap.put(tmp, a);
+        			   end = end+size;
+        			   k++;
+    			   }
+    			   else{
+    				   break;
+    			   } 
+    		   }else{
+    			   break;
+    		   }
+    	   }
+    	   if(k==index){
+    		   ret.add(start);
+    	   }
+    	   
+        }
+        return ret;  
+    }
+}
