@@ -1,0 +1,36 @@
+package leetcode1to50;
+
+public class code34 {
+	public int[] searchRange(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length-1;
+        int []ret = new int[2];
+        ret[0]=-1;
+        ret[1]=-1;
+        returnresult(start,end,nums,ret,target);
+        return ret;
+    }
+    void returnresult(int start, int end, int[] nums, int[] ret, int target){
+    	int mid = start+(end-start)/2;
+    	if(start<=end){
+	    	if(nums[mid]==target){
+	    		if(ret[0]==-1&&ret[1]==-1){
+	    			ret[0]=mid;
+	    			ret[1]=mid;
+	    			returnresult(start, mid-1, nums, ret, target);
+	    			returnresult(mid+1, end, nums, ret, target);
+	    		}else if(ret[0]>mid) {
+	    			ret[0]=mid;
+	    			returnresult(start, mid-1, nums, ret, target);
+	    		}else if(ret[1]<mid) {
+	    			ret[1]=mid;
+	    			returnresult(mid+1, end, nums, ret, target);
+	    		}
+	    	}else if(nums[mid]<target){
+	    		returnresult(mid+1, end, nums, ret, target);
+	    	}else{
+	    		returnresult(start, mid-1, nums, ret, target);
+	    	}
+    	}else return;
+    }
+}
