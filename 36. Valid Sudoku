@@ -1,0 +1,55 @@
+public class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        int [][]col = new int[9][9];
+	    int [][]row = new int[9][9];
+	    int [][]gil = new int[9][9];
+	    for(int i=0;i<9;i++){
+	    	for(int j=0;j<9;j++){
+	    		col[i][j]=0;
+	    		row[i][j]=0;
+	    		gil[i][j]=0;
+	    	}
+	    }
+    	for(int i=0;i<9;i++){
+	    	 for(int j=0;j<9;j++){
+	    		 int tmp = (int)board[i][j]-49;
+	    		 if(tmp>=0){
+	    			 col[i][tmp]++;
+	    			 row[j][tmp]++;
+	    			 if(i<3){
+	    				 if(j<3){
+	    					 gil[0][tmp]++;
+	    				 }else if(j<6){
+	    					 gil[1][tmp]++;
+	    				 }else{
+	    					 gil[2][tmp]++;
+	    				 }
+	    			 }else if(i<6){
+	    				 if(j<3){
+	    					 gil[3][tmp]++;
+	    				 }else if(j<6){
+	    					 gil[4][tmp]++;
+	    				 }else{
+	    					 gil[5][tmp]++;
+	    				 }
+	    			 }else{
+	    				 if(j<3){
+	    					 gil[6][tmp]++;
+	    				 }else if(j<6){
+	    					 gil[7][tmp]++;
+	    				 }else{
+	    					 gil[8][tmp]++;
+	    				 }
+	    			 }
+	    		 }
+	    	 }
+	     }
+    	for(int i=0;i<9;i++){
+    		for(int j=0;j<9;j++){
+    			if(col[i][j]>1||row[i][j]>1||gil[i][j]>1)
+    				return false;
+    		}
+    	}
+    	return true;
+    }
+}
