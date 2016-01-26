@@ -1,0 +1,29 @@
+public class Solution {
+    public String countAndSay(int n) {
+        String current = "1";
+		for(int i=0;i<n-1;i++){
+			String tmp = String.valueOf(current);
+			current = "";
+			char now='0';
+			char old='-';
+			int freq=0;
+			for(int j=0;j<tmp.length();j++){
+				now = tmp.charAt(j);
+				if(now!=old&&old=='-'){
+					freq=1;
+					old=now;
+				}else if(now!=old&&old!='-'){
+					current+=freq;
+					current+=old;
+					freq=1;
+					old=now;
+				}else if(now==old){
+					freq++;
+				}
+			}
+			current+=freq;
+			current+=old;
+		}
+		return current;
+    }
+}
